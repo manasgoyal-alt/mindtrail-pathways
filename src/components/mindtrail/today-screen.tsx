@@ -18,7 +18,7 @@ export function TodayScreen() {
         <Button asChild className="mt-7 h-11"><Link to="/check-in">Start check-in <ArrowRight /></Link></Button>
       </div>
       <div className="animate-gentle-rise border bg-primary p-6 text-primary-foreground shadow-sm [animation-delay:80ms]">
-        <MessageCircle className="size-6" /><h2 className="mt-6 font-display text-2xl font-semibold">Want to talk it through?</h2><p className="mt-3 text-sm leading-6 text-primary-foreground/75">Start a private conversation at your own pace. MindTrail listens without judging.</p><Button asChild variant="secondary" className="mt-6"><Link to="/chat/demo-welcome">Open chat <ChevronRight /></Link></Button>
+        <MessageCircle className="size-6" /><h2 className="mt-6 font-display text-2xl font-semibold">Want to talk it through?</h2><p className="mt-3 text-sm leading-6 text-primary-foreground/75">Start a private conversation at your own pace. MindTrail listens without judging.</p><Button asChild variant="secondary" className="mt-6"><Link to="/chat/$threadId" params={{threadId:"demo-welcome"}}>Open chat <ChevronRight /></Link></Button>
       </div>
     </section>
     <section className="mt-5 grid gap-5 lg:grid-cols-2">

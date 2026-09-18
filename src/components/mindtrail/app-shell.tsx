@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 const items = [
   { to: "/today", label: "Today", icon: Home },
-  { to: "/chat/demo-welcome", label: "Chat", icon: MessageCircle },
+  { to: "/chat/$threadId", params: { threadId: "demo-welcome" }, label: "Chat", icon: MessageCircle },
   { to: "/check-in", label: "Check-ins", icon: CalendarCheck },
   { to: "/support", label: "Support", icon: Users },
   { to: "/privacy", label: "Privacy", icon: LockKeyhole },
@@ -24,7 +24,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <nav className="mt-10 space-y-1" aria-label="Main navigation">
           {items.map(({ to, label, icon: Icon }) => {
             const active = pathname === to || (label === "Chat" && pathname.startsWith("/chat/"));
-            return <Link key={label} to={to} className={`flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold transition-colors ${active ? "bg-secondary text-secondary-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground"}`}><Icon className="size-4" />{label}</Link>;
+            return <Link key={label} to={to} params={"params" in items.find((item) => item.label === label)! ? { threadId: "demo-welcome" } : undefined} className={`flex items-center gap-3 rounded-md px-3 py-3 text-sm font-semibold transition-colors ${active ? "bg-secondary text-secondary-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground"}`}><Icon className="size-4" />{label}</Link>;
           })}
         </nav>
         <div className="mt-auto rounded-md border bg-muted/50 p-4">
@@ -35,7 +35,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
       <main className="min-h-screen pb-20 md:ml-64 md:pb-0">{children}</main>
       <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-5 border-t bg-card/95 px-1 py-2 backdrop-blur md:hidden" aria-label="Mobile navigation">
-        {items.map(({ to, label, icon: Icon }) => <Link key={label} to={to} aria-label={label} className={`flex min-w-0 flex-col items-center gap-1 py-1 text-[10px] font-semibold ${pathname === to || (label === "Chat" && pathname.startsWith("/chat/")) ? "text-primary" : "text-muted-foreground"}`}><Icon className="size-5" /><span className="truncate">{label}</span></Link>)}
+        {items.map(({ to, label, icon: Icon }) => <Link key={label} to={to} params={label === "Chat" ? { threadId: "demo-welcome" } : undefined} aria-label={label} className={`flex min-w-0 flex-col items-center gap-1 py-1 text-[10px] font-semibold ${pathname === to || (label === "Chat" && pathname.startsWith("/chat/")) ? "text-primary" : "text-muted-foreground"}`}><Icon className="size-5" /><span className="truncate">{label}</span></Link>)}
       </nav>
     </div>
   );
