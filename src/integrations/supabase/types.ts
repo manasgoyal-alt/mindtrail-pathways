@@ -14,7 +14,209 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      chat_messages: {
+        Row: {
+          ai_message_id: string | null
+          created_at: string
+          id: string
+          parts: Json
+          role: string
+          thread_id: string
+          user_id: string
+        }
+        Insert: {
+          ai_message_id?: string | null
+          created_at?: string
+          id?: string
+          parts?: Json
+          role: string
+          thread_id: string
+          user_id: string
+        }
+        Update: {
+          ai_message_id?: string | null
+          created_at?: string
+          id?: string
+          parts?: Json
+          role?: string
+          thread_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_thread_id_fkey"
+            columns: ["thread_id"]
+            isOneToOne: false
+            referencedRelation: "chat_threads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      chat_threads: {
+        Row: {
+          created_at: string
+          id: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      check_ins: {
+        Row: {
+          created_at: string
+          energy: number
+          id: string
+          mood: string
+          note: string | null
+          sleep: number
+          stress: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          energy: number
+          id?: string
+          mood: string
+          note?: string | null
+          sleep: number
+          stress: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          energy?: number
+          id?: string
+          mood?: string
+          note?: string | null
+          sleep?: number
+          stress?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      nudges: {
+        Row: {
+          action_label: string
+          created_at: string
+          id: string
+          message: string
+          reason_summary: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          action_label: string
+          created_at?: string
+          id?: string
+          message: string
+          reason_summary: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          action_label?: string
+          created_at?: string
+          id?: string
+          message?: string
+          reason_summary?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      privacy_preferences: {
+        Row: {
+          academic_context_enabled: boolean
+          id: string
+          support_contact_enabled: boolean
+          tracking_enabled: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          academic_context_enabled?: boolean
+          id?: string
+          support_contact_enabled?: boolean
+          tracking_enabled?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          academic_context_enabled?: boolean
+          id?: string
+          support_contact_enabled?: boolean
+          tracking_enabled?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      support_requests: {
+        Row: {
+          consent_confirmed: boolean
+          created_at: string
+          id: string
+          status: string
+          support_type: string
+          user_id: string
+        }
+        Insert: {
+          consent_confirmed?: boolean
+          created_at?: string
+          id?: string
+          status?: string
+          support_type: string
+          user_id: string
+        }
+        Update: {
+          consent_confirmed?: boolean
+          created_at?: string
+          id?: string
+          status?: string
+          support_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

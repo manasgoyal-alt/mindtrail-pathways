@@ -1,0 +1,2 @@
+import { createFileRoute } from "@tanstack/react-router"; import { CheckInScreen } from "@/components/mindtrail/check-in-screen";
+export const Route=createFileRoute("/check-in")({head:()=>({meta:[{title:"Daily check-in — MindTrail"},{name:"description",content:"A brief private student wellbeing check-in."},{property:"og:title",content:"Daily check-in — MindTrail"},{property:"og:description",content:"Take a short, supportive daily check-in."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:CheckInScreen});
