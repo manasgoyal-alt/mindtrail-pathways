@@ -54,7 +54,7 @@ export function WelcomeScreen() {
             <Button className="h-11 w-full" disabled={busy || !email || !password} onClick={signIn}>{busy ? "Signing in…" : "Sign in"}</Button>
             <Button className="h-11 w-full" variant="outline" onClick={googleSignIn}>Continue with Google</Button>
             <div className="flex items-center gap-3"><span className="h-px flex-1 bg-border"/><span className="text-xs text-muted-foreground">HACKATHON DEMO</span><span className="h-px flex-1 bg-border"/></div>
-            <Button className="h-11 w-full" variant="secondary" onClick={() => navigate({ to: "/today" })}>Enter as mock student</Button>
+            <Button className="h-11 w-full" variant="secondary" onClick={async () => { await supabase.auth.signInAnonymously(); navigate({ to: "/today" }); }}>Enter as mock student</Button>
           </div>
           <p className="mt-8 text-xs leading-5 text-muted-foreground">Demo data is fictional. In a real emergency, contact local emergency services or a trusted person nearby.</p>
         </div>
