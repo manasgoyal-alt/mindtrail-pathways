@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { TodayScreen } from "@/components/mindtrail/today-screen";
+export const Route = createFileRoute("/today")({ head: () => ({ meta: [{ title: "Today — MindTrail" },{ name:"description",content:"Your MindTrail daily check-in and wellbeing suggestions."},{ property:"og:title",content:"Today — MindTrail"},{ property:"og:description",content:"A private student wellbeing check-in."},{ property:"og:type",content:"website"},{ name:"twitter:card",content:"summary_large_image" }] }), component: TodayScreen });
